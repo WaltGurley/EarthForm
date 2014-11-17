@@ -1,0 +1,313 @@
+﻿<LayoutGUI>:
+	canvas:
+		Rectangle
+			source: 'Images\cloud.jpg'
+			pos: self.pos
+			size: self.size
+
+	Label:
+		text: 'Earth Surface Modeler'
+		pos_hint: {'center_x': 0.5, 'center_y': 0.95}
+		font_size: str(root.height*0.07) + 'sp'
+		markup: True
+
+
+<VariableWidget>:
+	var1: v1
+	canvas:
+		Rectangle
+			source: 'Images\VariableWidget.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 460.0/1920.0, 460.0/1080.0
+	pos_hint: {'x': 480.0/1920.0, 'y': 440.0/1080.0}
+
+	Label:
+		text: 'Conduct a Model Trial'
+		size_hint: 1, 0.1
+		pos_hint: {'center_x': 0.50, 'y': 410.0/460.0}
+		font_size: str(root.height*0.08) + 'sp'
+		markup: True
+
+	Button:
+		id: v1
+		text: root.var_name1[0] + ':\n' + str(root.v1) +  ' ' + str(root.var_name1[1])
+        background_normal: 'Images\VarButton.png'
+        background_down: 'Images\VarButtonDown.png'
+		size_hint: 120.0/460.0, 70.0/460.0
+		pos_hint: {'x': 30.0/460.0, 'y': 310.0/460.0}
+		font_size: str(root.height*0.04) + 'sp'
+        halign: 'center'
+		markup: True
+		on_press: root.btn_action(v1)
+	Slider:
+        canvas:
+            Rectangle:
+                pos: (self.value_pos[0] - 16, self.center_y - 17)
+                size: (32, 32)
+                source: 'Images\Slider2.png'
+		id: v1_val
+		size_hint: 250.0/460.0, 70.0/460.0
+		pos_hint: {'x': 170.0/460.0, 'center_y': 345.0/460.0}
+		value: root.v1
+		on_value: root.sldr_action(v1, v1_val)
+
+	Button:
+		id: v2
+		text: root.var_name2[0] + ':\n' + str(root.v2) +  ' ' + str(root.var_name2[1])
+        background_normal: 'Images\VarButton.png'
+        background_down: 'Images\VarButtonDown.png'
+		size_hint: 120.0/460.0, 70.0/460.0
+		pos_hint: {'x': 30.0/460.0, 'y': 210.0/460.0}
+		font_size: str(root.height*0.04) + 'sp'
+        halign: 'center'
+		markup: True
+		on_press: root.btn_action(v2)
+	Slider:
+        canvas:
+            Rectangle:
+                pos: (self.value_pos[0] - 16, self.center_y - 17)
+                size: (32, 32)
+                source: 'Images\Slider2.png'
+		id: v2_val
+		size_hint: 250.0/460.0, 70.0/460.0
+		pos_hint: {'x': 170.0/460.0, 'center_y': 245.0/460.0}
+		value: root.v2
+		on_value: root.sldr_action(v2, v2_val)
+
+	Button:
+		id: v3
+		text: root.var_name3[0] + ':\n' + str(root.v3) +  ' ' + str(root.var_name3[1])
+        background_normal: 'Images\VarButton.png'
+        background_down: 'Images\VarButtonDown.png'
+		size_hint: 120.0/460.0, 70.0/460.0
+		pos_hint: {'x': 30.0/460.0, 'y': 110.0/460.0}
+		font_size: str(root.height*0.04) + 'sp'
+        halign: 'center'
+		markup: True
+		on_press: root.btn_action(v3)
+	Slider:
+        canvas:
+            Rectangle:
+                pos: (self.value_pos[0]-16, self.center_y-17)
+                size: (32, 32)
+                source: 'Images\Slider2.png'
+		id: v3_val
+		size_hint: 250.0/460.0, 70.0/460.0
+		pos_hint: {'x': 170.0/460.0, 'center_y': 145.0/460.0}
+        min: 200.
+        max: 2000.
+		value: root.v3
+		on_value: root.sldr_action(v3, v3_val)
+
+	Button:
+		id: start_run
+        text: 'Press To Run Trial'
+        background_normal: 'Images\RunButton.png'
+        background_down: 'Images\RunButtonDown.png'
+		size_hint: 240.0/460.0, 70.0/460.0
+		pos_hint: {'center_x': 0.5,'y': 20.0/460.0}
+		font_size: str(root.height*0.06) + 'sp'
+		markup: True
+        on_press: root.run_graphic(start_run)
+		on_release: root.start_start_run_thread(start_run)
+
+
+<VariablePopup>:
+	size_hint: 0.25, 0.5
+	pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+    canvas:
+		Rectangle
+			source: 'Images\PopUp.png'
+			pos: self.pos
+			size: self.size	
+	GridLayout:
+		rows: 3
+		size_hint: 0.5, 0.9
+		pos_hint: {'center_x': 0.5,'center_y': 0.5}
+		Label:
+			pos_hint: {'center_x': 0.5, 'y': 0}
+			text: root.current_value
+			bold: True
+			font_size: 28
+			size_hint_y: 0.2
+			
+		Label:
+			pos_hint: {'center_x': 0.5, 'y': 0.25}
+			text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+			font_color: (0,0,0,0)
+			text_size: (1920*0.2, None)
+			font_size: str(20) + 'sp'
+			halign: 'justify'
+			markup: True
+			
+		Button:
+			text: 'Press to close.'
+			size_hint_y: 0.25
+			bold: True
+			font_size: 24
+			background_normal: 'Images\RunButton.png'
+			background_down: 'Images\RunButtonDown.png'
+			on_press: root.dismiss_button()
+
+
+<ScenerioSelector>:
+	canvas:
+		Rectangle
+			source: 'Images\SelectScenario.png'
+			pos: self.pos
+			size: self.size			
+	
+	size_hint: 400.0/1920.0, 120.0/1080.0
+	pos_hint: {'x': 40.0/1920.0, 'y': 920.0/1080.0}
+
+	Label:
+		text: 'Select the Earth surface\nscenario you wish to investigate'
+		size_hint: 1, 0.75
+		pos_hint: {'center_x': 0.50, 'y': 0.33}
+		font_size: str(root.height*0.2) + 'sp'
+        halign: 'center'
+		markup: True
+
+		
+<ScenarioSelectorPopup>
+    canvas:
+		Rectangle
+			source: 'Images\PopUp.png'
+			pos: self.pos
+			size: self.size	
+	size_hint: 0.25, 0.5
+
+    GridLayout:
+        cols: 1
+        rows: 3
+        size_hint: 0.9, 0.9
+
+        Button:
+            text: 'Rainfall in Raleigh'
+            pos_hint: {'center_x': 0.5}
+            font_size: str(root.height*0.05) + 'sp'
+            markup: True
+            on_press: root.change_scenario('Rainfall in Raleigh')
+            background_normal: 'Images\RaleighStock.jpg'
+
+        Button:
+            text: 'Uplift in the Appalachians'
+            pos_hint: {'center_x': 0.5}
+            font_size: str(root.height*0.05) + 'sp'
+            markup: True
+            on_press: root.change_scenario('Uplift in the Appalachians')
+            background_normal: 'Images\MountMitchellStock.jpg'
+
+        Button:
+            text: 'Sawing the Beartooth Mtns'
+            pos_hint: {'center_x': 0.5}
+            font_size: str(root.height*0.05) + 'sp'
+            markup: True
+            on_press: root.change_scenario('Sawing the Beartooth Mtns')
+            background_normal: 'Images\BeartoothStock.jpg'
+
+
+<ScenarioInfo>:
+	canvas:
+		Rectangle
+			source: 'Images\ScenarioInfo.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 400.0/1920.0, 860.0/1080.0
+	pos_hint: {'x': 40.0/1920.0, 'y': 40.0/1080.0}
+
+	Label:
+		text: 'Scenario Information\n'
+		size_hint: 1, 0.20
+		pos_hint: {'center_x': 0.50, 'y': 0.85}
+		font_size: str(root.width*0.08) + 'sp'
+		markup: True
+        halign: 'center'
+
+    Label:
+		text: 'Current Scenario:\n' + root.current_scenario
+		size_hint: 1, 0.20
+		pos_hint: {'center_x': 0.50, 'y': 0.75}
+		font_size: str(root.width*0.08) + 'sp'
+		markup: True
+        halign: 'center'
+
+
+<BackgroundInfo>:
+	canvas:
+		Rectangle
+			source: 'Images\BackgroundInfo.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 500.0/1920.0, 380.0/1080.0
+	pos_hint: {'x': 460.0/1920.0, 'y': 40.0/1080.0}
+
+	Label:
+		text: 'Geoscientists use models to simulate Earth systems and examine research questions. Questions can be explored methodically since Earth systems parts, such as rain or mountain elevations, can be controlled in models. By combining models with the scientific method, geoscientists have deepened understanding of past conditions and increased our ability to consider future scenarios.\n\nThis scenario uses the Channel-Hillslope Integrated Landscape Development (CHILD) model described by:\n\nTucker, G.E., Lancaster, S.T., Gasparini, N.M., and Bras, R.L. (2001a) The Channel-Hillslope Integrated Landscape Development (CHILD) Model, in Landscape Erosion and Evolution Modeling, edited by R.S. Harmon and W.W. Doe III, Kluwer Academic/Plenum Publishers, pp. 349-388.\n\nThis interface was created in a collaboration between North Carolina State University and the North Carolina Museum of Natural Sciences by Nathan J. Lyons, J. Walter Gurley, and Helena Mitasova.'
+		size_hint: None, None
+		pos_hint: {'center_x': 0.50, 'center_y': 0.50}
+		text_size: root.width*0.97, None
+		font_size: str(root.height*0.0425) + 'sp'
+        halign: 'justify'
+		markup: True
+
+
+<VisualOutput>:
+	canvas:
+		Rectangle
+			source: 'Images\VisualOutput.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 900.0/1920.0, 640.0/1080.0
+	pos_hint: {'x': 980.0/1920.0, 'y': 40.0/1080.0}
+
+
+<OutputProgress>:
+	canvas:
+		Rectangle
+			source: 'Images\OutputProgress.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 420.0/1920.0, 180.0/1080.0
+	pos_hint: {'x': 980.0/1920.0, 'y': 720.0/1080.0}
+	
+	#Image:
+	#	source: 'Images\ESMgraphic.zip'
+	#	pos_hint: {'center_x': 0.50,'center_y': 0.50}
+	#	anim_delay: 0.05
+
+	Label:
+		text: 'Output Progress'
+		size_hint: 1, 0.20
+		pos_hint: {'center_x': 0.50, 'y': 0.80}
+		font_size: str(root.height*0.2) + 'sp'
+		markup: True
+	
+	ProgressBar:
+		value: root.val
+		size_hint_x: 0.9
+		pos_hint: {'center_x': 0.50, 'y': 0}
+
+
+<Flex>:
+	canvas:
+		Rectangle
+			source: 'Images\Flex.png'
+			pos: self.pos
+			size: self.size
+
+	size_hint: 440.0/1920.0, 320.0/1080.0
+	pos_hint: {'x': 1440.0/1920.0, 'y': 720.0/1080.0}
+
+	Label:
+		text: 'Flex'
+		size_hint: 1, 0.20
+		pos_hint: {'center_x': 0.50, 'y': 0.80}
+		font_size: str(root.height*0.2) + 'sp'
+		markup: True
