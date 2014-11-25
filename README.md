@@ -1,4 +1,4 @@
-EarthSurfaceModeler
+LandForm
 ===================
 
-Interactive program using geomorphological modeling to teach earth processes 
+Interactive program using geomorphological modeling to teach earth processes.
